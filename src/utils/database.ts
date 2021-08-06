@@ -1,6 +1,9 @@
+import dotenv from "dotenv";
 import { Sequelize } from "sequelize";
 import { UserModel } from "../modules/user/model/userModel";
 import { PostModel } from "../modules/posts/model/postModel";
+
+dotenv.config();
 
 function setupModels(sequelizeInstance: Sequelize) {
   UserModel.setup(sequelizeInstance);
