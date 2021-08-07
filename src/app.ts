@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import multer from "multer";
+import { postEndpoints } from "./modules/posts/endpoints";
 import { userEndpoints } from "./modules/user/endpoints";
 import { sequelize } from "./utils/database";
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/posts", postEndpoints);
 app.use("/users", userEndpoints);
 
 void sequelize.sync().then(() => {

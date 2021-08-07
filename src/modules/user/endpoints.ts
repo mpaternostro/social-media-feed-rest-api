@@ -17,10 +17,15 @@ router.get("/", async (req: UserRequest, res) => {
 
 router.post("/add", async (req: UserRequest, res) => {
   const { name, username } = req.body;
+  if (!name || !username) {
+    return res.status(422).json({
+      message: "Could not create user. Required inputs not provided.",
+    });
+  }
   const userInstance = await UserModel.create({ name, username });
   const user = fromUserModelToEntity(userInstance);
   return res.status(201).json({
-    message: "New user created",
+    message: "New user created.",
     user,
   });
 });

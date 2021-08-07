@@ -8,6 +8,7 @@ dotenv.config();
 function setupModels(sequelizeInstance: Sequelize) {
   UserModel.setup(sequelizeInstance);
   PostModel.setup(sequelizeInstance);
+  PostModel.setupAssociations(UserModel);
 }
 
 const sequelize = new Sequelize({
