@@ -6,7 +6,9 @@ import { PostModel } from "./model/postModel";
 const router = Router();
 
 router.get("/", async (req: PostRequest, res) => {
-  const postInstances = await PostModel.findAll();
+  const postInstances = await PostModel.findAll({
+    order: [["createdAt", "DESC"]],
+  });
   const posts = postInstances.map((postInstance) =>
     fromPostModelToEntity(postInstance)
   );
